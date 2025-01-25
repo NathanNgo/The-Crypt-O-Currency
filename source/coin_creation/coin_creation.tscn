@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dttej0f3kmfec"]
+
+[ext_resource type="Script" path="res://source/coin_creation/coin_creation.gd" id="1_spwi0"]
+
+[node name="CoinCreation" type="Node2D"]
+script = ExtResource("1_spwi0")

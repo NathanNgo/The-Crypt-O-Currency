@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://vw7odsmmdrpw"]
+
+[ext_resource type="Script" path="res://source/dungeon/dungeon.gd" id="1_iosge"]
+
+[node name="Dungeon" type="Node2D"]
+script = ExtResource("1_iosge")
