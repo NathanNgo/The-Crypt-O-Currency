@@ -29,3 +29,6 @@ func _on_sale_complete(coin_bought_input: int, coin_value_input: int) -> void:
 	coin_value = coin_value_input
 	%SaleMenu.hide()
 	%Dungeon.show()
+	%SaleMenu.remove_heroes()
+
+	
