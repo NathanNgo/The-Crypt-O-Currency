@@ -26,9 +26,9 @@ var enemy_variants = [
 	{
 		"enemy_type": EnemyTypes.GHOST,
 		"enemy_class_name": "Ghost",
-		"enemy_health": 35,
-		"enemy_attack": 14,
-		"enemy_cost": 10
+		"enemy_health": 10,
+		"enemy_attack": 2,
+		"enemy_cost": 1
 	},
 ]
 
@@ -45,5 +45,6 @@ func _ready() -> void:
 	health = enemy_variant["enemy_health"]
 	attack = enemy_variant["enemy_attack"]
 	enemy_type = enemy_variant["enemy_type"]
+	enemy_cost = enemy_variant["enemy_cost"]
 
 	%EnemySprite.texture = default_enemy_sprite

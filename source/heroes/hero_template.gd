@@ -1,4 +1,4 @@
-extends Node2D
+class_name HeroTemplate extends Node2D
 
 enum EquipmentQuality {
 	WOOD,
@@ -30,8 +30,7 @@ var hero_variants = [
 	{
 		"hero_type": HeroTypes.FIGHTER,
 		"hero_class_name": "Fighter",
-		# "hero_health": 20,
-		"hero_health": 1,
+		"hero_health": 20,
 		"hero_attack": 2,
 		"equipment": [EquipmentType.SWORD, EquipmentType.SHIELD],
 		"equipment_quality": EquipmentQuality.IRON
@@ -39,8 +38,7 @@ var hero_variants = [
 	{
 		"hero_type": HeroTypes.ARCHER,
 		"hero_class_name": "Archer",
-		# "hero_health": 12,
-		"hero_health": 1,
+		"hero_health": 12,
 		"hero_attack": 4,
 		"equipment": [EquipmentType.BOW, EquipmentType.QUIVER],
 		"equipment_quality": EquipmentQuality.IRON
@@ -48,8 +46,7 @@ var hero_variants = [
 	{
 		"hero_type": HeroTypes.WIZARD,
 		"hero_class_name": "Wizard",
-		# "hero_health": 8,
-		"hero_health": 1,
+		"hero_health": 8,
 		"hero_attack": 6,
 		"equipment": [EquipmentType.BOOK, EquipmentType.HAT],
 		"equipment_quality": EquipmentQuality.IRON
@@ -57,8 +54,7 @@ var hero_variants = [
 	{
 		"hero_type": HeroTypes.MONK,
 		"hero_class_name": "Monk",
-		# "hero_health": 15,
-		"hero_health": 1,
+		"hero_health": 15,
 		"hero_attack": 3,
 		"equipment": [EquipmentType.STAFF, EquipmentType.SCROLL],
 		"equipment_quality": EquipmentQuality.IRON
