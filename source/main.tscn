@@ -1,15 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://bccc4fo6l7whq"]
+[gd_scene load_steps=6 format=3 uid="uid://bccc4fo6l7whq"]
 
 [ext_resource type="PackedScene" uid="uid://dl44hk282mteu" path="res://source/sale_menu/sale_menu.tscn" id="1_h8lc1"]
 [ext_resource type="Script" path="res://source/main.gd" id="1_slxyi"]
 [ext_resource type="PackedScene" uid="uid://6ob2u32ooit1" path="res://source/splash_screen/splash_screen.tscn" id="2_hyb1m"]
 [ext_resource type="PackedScene" uid="uid://vw7odsmmdrpw" path="res://source/dungeon/dungeon.tscn" id="2_whafs"]
+[ext_resource type="PackedScene" uid="uid://dttej0f3kmfec" path="res://source/coin_creation/coin_creation.tscn" id="5_ah3du"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_slxyi")
 
 [node name="SplashScreen" parent="." instance=ExtResource("2_hyb1m")]
+unique_name_in_owner = true
 
 [node name="SaleMenu" parent="." instance=ExtResource("1_h8lc1")]
+unique_name_in_owner = true
 
 [node name="Dungeon" parent="." instance=ExtResource("2_whafs")]
+unique_name_in_owner = true
+
+[node name="CoinCreation" parent="." instance=ExtResource("5_ah3du")]
+unique_name_in_owner = true

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxrbstq6keyqc"]
+
+[ext_resource type="Script" path="res://source/sale_menu/slogan_button/slogan_button.gd" id="1_5g7pj"]
+
+[node name="SloganButton" type="Button"]
+offset_right = 112.0
+offset_bottom = 48.0
+scale = Vector2(1.00184, 1)
+text = "Slogan!"
+flat = true
+script = ExtResource("1_5g7pj")
