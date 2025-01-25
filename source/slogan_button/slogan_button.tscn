@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxrbstq6keyqc"]
+
+[ext_resource type="Script" path="res://source/slogan_button/slogan_button.gd" id="1_5g7pj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tjg83"]
+size = Vector2(112, 48)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_5g7pj")
+
+[node name="SloganButton" type="Button" parent="."]
+unique_name_in_owner = true
+offset_right = 112.0
+offset_bottom = 48.0
+scale = Vector2(1.00184, 1)
+text = "Slogan!"
+flat = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 24)
+shape = SubResource("RectangleShape2D_tjg83")
