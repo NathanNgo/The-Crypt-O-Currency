@@ -1,9 +1,12 @@
 extends Node
 
 @export var hero_template: PackedScene
+@export var enemy_template: PackedScene
 @export var slogan_button: PackedScene
 
 var coin_value: int = 0
+var dungeon_rooms: Array = []
+var current_dungeon_room: int = 0
 var slogan_amount: int = 0
 var hype: int = 0
 var sale_phase: bool = false
@@ -63,6 +66,8 @@ func _ready() -> void:
 
 	%SaleTimer.timeout.connect(_on_sale_timer_timeout)
 	%SloganSpawnTimer.timeout.connect(_on_slogan_spawn_timer_timeout)
+	%HeroAttackTimer.timeout.connect(_on_hero_attack_timer_timeout)
+	%EnemyAttackTimer.timeout.connect(_on_enemy_attack_timer_timeout)
 
 	%HypeAmount.set_text(str(hype))
 	%ValueAmount.set_text(str(coin_value))
@@ -89,6 +94,45 @@ func start_sale() -> void:
 	%SloganSpawnTimer.start()
 
 
+func start_dungeon() -> void:
+	generate_dungeons()
+	load_dungeon_room()
+
+
+func load_dungeon_room() -> void:
+	if current_dungeon_room > dungeon_rooms.size():
+		reset_game()
+		return
+
+	for hero in %HeroContainer.get_children():
+		hero.set_alive()
+
+	var enemies = dungeon_rooms[current_dungeon_room]
+	for enemy in enemies:
+		%EnemyContainer.add_child(enemy)
+	
+	%HeroAttackTimer.start(2)
+	%EnemyAttackTimer.start(3)
+	print("Loading Dungeon %d" % current_dungeon_room)
+
+
+func generate_enemies() -> Array[Node2D]:
+	var enemies: Array[Node2D] = []
+	for enemy_index in 4:
+		enemies.append(enemy_template.instantiate())
+
+	return enemies
+
+
+func generate_dungeons() -> void:
+	for room_index in randi_range(2, 4):
+		dungeon_rooms.append(generate_enemies())
+
+
+func reset_game() -> void:
+	pass
+
+
 func _on_sale_timer_timeout() -> void:
 	coin_value = hype * randi_range(2, 4)
 	%ValueAmount.set_text(str(coin_value))
@@ -99,18 +143,6 @@ func _on_sale_timer_timeout() -> void:
 	
 	# Play cackle
 	start_dungeon()
-
-
-func start_dungeon() -> void:
-	
-	pass
-
-
-func generate_enemy() -> void:
-	for enemy_index in 4:
-		var enemy = enemy_template.instantiate()
-		%EnemyContainer.add_child(enemy)
-
 
 
 func _on_slogan_spawn_timer_timeout() -> void:
@@ -145,3 +177,61 @@ func _on_submit_coin(coin_name_input: String) -> void:
 	coin_name = coin_name_input
 	%CoinCreation.hide()
 	start_sale()
+
+
+func _on_hero_attack_timer_timeout() -> void:
+	print("Heroes attacking")
+	var total_attack = 0
+	var enemies_remaining = false
+
+	for hero in %HeroContainer.get_children():
+		if hero.health > 0:
+			total_attack += hero.attack
+
+	var first_enemy = %EnemyContainer.get_child(0)
+	first_enemy.health -= total_attack
+
+	if first_enemy.health <= 0:
+		first_enemy.queue_free()
+
+	for enemy in %EnemyContainer.get_children():
+		if enemy.health > 0:
+			enemies_remaining = true
+
+	if not enemies_remaining:
+		current_dungeon_room += 1
+		print("All enemies dead")
+		load_dungeon_room()
+		return
+
+
+func _on_enemy_attack_timer_timeout() -> void:
+	print("Enemies attacking")
+	var total_attack = 0
+	var heroes_remaining = false
+
+	for enemy in %EnemyContainer.get_children():
+		total_attack += enemy.attack
+
+	for hero in %HeroContainer.get_children():
+		if hero.health <= 0:
+			continue
+
+		hero.health -= total_attack
+
+		if hero.health <= 0:
+			hero.set_dead()
+		
+		break
+
+	for hero in %HeroContainer.get_children():
+		if hero.health > 0:
+			heroes_remaining = true
+
+	if not heroes_remaining:
+		print("All heroes dead")
+		reset_game()
+		return
+
+	%EnemyAttackTimer.start(3)
+	%HeroAttackTimer.start(2)

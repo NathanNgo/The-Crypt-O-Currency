@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://wwfo3m6af6ws"]
+
+[ext_resource type="Script" path="res://source/enemies/enemy_template.gd" id="1_j4esv"]
+[ext_resource type="Texture2D" uid="uid://dg8bqrei7yr5e" path="res://assets/icon.svg" id="2_6ct58"]
+[ext_resource type="Texture2D" uid="uid://bwwtn60xjmqnn" path="res://assets/goblin_base.png" id="2_ujayx"]
+
+[node name="EnemyTemplate" type="Node2D"]
+script = ExtResource("1_j4esv")
+default_enemy_sprite = ExtResource("2_ujayx")
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("2_6ct58")

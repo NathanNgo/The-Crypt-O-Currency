@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bccc4fo6l7whq"]
+[gd_scene load_steps=11 format=3 uid="uid://bccc4fo6l7whq"]
 
 [ext_resource type="Script" path="res://source/main.gd" id="1_slxyi"]
 [ext_resource type="PackedScene" uid="uid://444rnepwdub5" path="res://source/heroes/hero_template.tscn" id="2_0w1wp"]
 [ext_resource type="PackedScene" uid="uid://dxrbstq6keyqc" path="res://source/slogan_button/slogan_button.tscn" id="3_al51a"]
+[ext_resource type="PackedScene" uid="uid://wwfo3m6af6ws" path="res://source/enemies/enemy_template.tscn" id="3_lje7j"]
 [ext_resource type="PackedScene" uid="uid://dttej0f3kmfec" path="res://source/coin_creation/coin_creation.tscn" id="5_ah3du"]
 [ext_resource type="Texture2D" uid="uid://wcuxwqo36l5" path="res://assets/crypt_screen.png" id="6_gnhu0"]
 [ext_resource type="Texture2D" uid="uid://myrcm1jnkkxy" path="res://assets/dungeon_room.png" id="7_ewyfs"]
@@ -17,6 +18,7 @@ size = Vector2(1920, 64)
 [node name="Main" type="Node"]
 script = ExtResource("1_slxyi")
 hero_template = ExtResource("2_0w1wp")
+enemy_template = ExtResource("3_lje7j")
 slogan_button = ExtResource("3_al51a")
 
 [node name="DungeonRoom" type="Sprite2D" parent="."]
@@ -65,11 +67,21 @@ unique_name_in_owner = true
 
 [node name="SaleTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 20.0
+wait_time = 2.0
 one_shot = true
 
 [node name="SloganSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+one_shot = true
+
+[node name="HeroAttackTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
+[node name="EnemyAttackTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
 one_shot = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
